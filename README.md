@@ -37,22 +37,16 @@ In the **build** folder there is
    * **Dockerfile** : this specifies the build of our new custom image. the first **FROM** line may need to be edited to point at the coreact location and/or tag for the base image. The Dockerfile then copies resources out of **dependencies** folder and puts them in the appropriate folders in the image
      * Of note in the **dependencies** folder is the **standaone-openshift.xml**. The contains RH-SSOs base config. This file has been adapted so that RH-SSO can pick up database config from the container at runtime. This config is injected by a K8s secret.
      * ```
-                <datasource jndi-name="java:jboss/datasources/KeycloakDS" pool-name="KeycloakDS" enabled="true" use-java-context="true">
-                    <connection-url>${env.DB_URL}</connection-url>
-                    <driver>oracle</driver>
-                    <security>
-                        <user-name>${env.DB_USER}</user-name>
-                        <password>${env.DB_PASSWORD}</password>
-                    </security>
-                </datasource>
-                <drivers>
-                    <driver name="h2" module="com.h2database.h2">
-                        <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
-                    </driver>                    
-                </drivers>
-            </datasources>
+        <datasource jndi-name="java:jboss/datasources/KeycloakDS" pool-name="KeycloakDS" enabled="true" use-java-context="true">
+            <connection-url>${env.DB_URL}</connection-url>
+            <driver>oracle</driver>
+            <security>
+                <user-name>${env.DB_USER}</user-name>
+                <password>${env.DB_PASSWORD}</password>
+            </security>
+        </datasource>
        ```
-       Notice the format of the inject variables eg. ${env.DB_USER}
+       Notice the format of the injected variables eg. ${env.DB_USER}
    * **build-openshift.sh** : this deploys a BuildConfig template (**docker-build-template.yaml**) to Openshift and perform the Docker build there, tag the image and dend it to a repository.
    * **build-local-docker.sh** : this does a Docker build/tag/push on a local machine, in which only Docker is installed. This can be the quickest most convenient method.
 
