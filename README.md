@@ -16,6 +16,7 @@ Oracle Drivers here
    * https://www.oracle.com/database/technologies/appdev/jdbc-ucp-19c-downloads.html
 
 
+
 Deployment is a two step process.
-   1. Customising the base container image to incorporate tools and configuration to allow RH-SS) to connect to an ORacle RDBMS (by default it only supports Postgresql). Scripts and resources for doing this are in the *build* folder.
-   2. Deploying the customised image with a K8s secret contain the database URL and credentials. Scripts and resources for doing this are in the *deploy* folder.
+   1. Customising the base container image to incorporate tools and configuration to allow RH-SS) to connect to an ORacle RDBMS (by default it only supports Postgresql). Scripts and resources for doing this are in the _build_ folder.
+   2. Deploying the customised image with a K8s secret contain the database URL and credentials. Scripts and resources for doing this are in the _deploy_ folder.
