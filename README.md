@@ -46,7 +46,7 @@ In the **build** folder there is
             </security>
         </datasource>
        ```
-       Notice the format of the injected variables eg. ${env.DB_USER}
+       Notice the format of the injected variables eg. **${env.DB_USER}**
    * **build-openshift.sh** : this deploys a BuildConfig template (**docker-build-template.yaml**) to Openshift and perform the Docker build there, tag the image and dend it to a repository.
    * **build-local-docker.sh** : this does a Docker build/tag/push on a local machine, in which only Docker is installed. This can be the quickest most convenient method.
 
