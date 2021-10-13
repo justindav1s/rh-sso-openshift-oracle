@@ -1,5 +1,7 @@
 # Deploying Red Hat SSO with an Oracle DB datsource on Openshift 4
 
+## Background 
+
 This Document is based on the Official Red Hat Documentation here
    * https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.4/html-single/red_hat_single_sign-on_for_openshift_on_openjdk/index#customizing_the_default_behavior_of_the_red_hat_single_sign_on_image
 
@@ -17,6 +19,7 @@ Oracle Drivers here
 
 
 
-Deployment is a two step process.
-   1. Customising the base container image to incorporate tools and configuration to allow RH-SS) to connect to an ORacle RDBMS (by default it only supports Postgresql). Scripts and resources for doing this are in the _build_ folder.
-   2. Deploying the customised image with a K8s secret contain the database URL and credentials. Scripts and resources for doing this are in the _deploy_ folder.
+## Deployment is a two step process.
+
+   1. Customising the base container image to incorporate tools and configuration to allow RH-SS) to connect to an ORacle RDBMS (by default it only supports Postgresql). Scripts and resources for doing this are in the **build** folder.
+   2. Deploying the customised image with a K8s secret contain the database URL and credentials. Scripts and resources for doing this are in the **deploy** folder.
