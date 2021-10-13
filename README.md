@@ -55,4 +55,10 @@ In the **build** folder there is
 
 The **deploy** folder contains
 
-   * **deploy.sh** : this script does most of the work of deploying the custom image. At the Top many variales 
+   * **deploy.sh** : this script does most of the work of deploying the custom image. It is split into a number of subsections :
+      1. Variables are defined, please set them appropriately for the desired environment.
+      2. Clean up resources after previous deploys, if necessary.
+      3. Set up some policy for the default ServiceAccount.
+      4. Create a secret based on some of the variables defined above. This ecret contains the database credentials and URL. They are injected into the container when it runs and refernced by the RH-SSO base config in the **standalone-openshift.xml** file. See above.
+      5. Deploy the Openshift template that defines the K8s objects necessary to run and configure our custom image.
+
