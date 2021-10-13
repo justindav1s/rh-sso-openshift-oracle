@@ -32,5 +32,10 @@ Oracle Drivers here
 
 ### Image Build
 
+In the **build** folder there is
+   
+   * **Dockerfile** : this specifies the build of our new custom image. the first **FROM** line may need to be edited to point at the coreact location and/or tag for the base image. The Dockerfile then copies resources out of **dependencies** folder and puts them in the appropriate folders in the image/
+   * 
+
 
 ### Image Deploy
