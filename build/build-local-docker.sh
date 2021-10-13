@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+REPO_HOST=quay.io
+REPO_NAMESPACE=justindav1s
+IMAGE_NAME=custom-sso
+IMAGE_TAG=7.4-oracle
+
+docker build -t $IMAGE_NAME:$IMAGE_TAG .
+
+docker tag $IMAGE_NAME:$IMAGE_TAG $REPO_HOST/$REPO_NAMESPACE/$IMAGE_NAME:$IMAGE_TAG
+
+docker push $REPO_HOST/$REPO_NAMESPACE/$IMAGE_NAME:$IMAGE_TAG
