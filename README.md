@@ -2,7 +2,7 @@
 
 ## Background 
 
-This Document is based on the Official Red Hat Documentation here
+This document is based on the official Red Hat Documentation here
 
    * https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.4/html-single/red_hat_single_sign-on_for_openshift_on_openjdk/index#customizing_the_default_behavior_of_the_red_hat_single_sign_on_image
 
@@ -26,16 +26,16 @@ Oracle Drivers here
 
 ## Deployment is a two step process.
 
-   1. Customising the base container image to incorporate tools and configuration to allow RH-SS) to connect to an ORacle RDBMS (by default it only supports Postgresql). Scripts and resources for doing this are in the **build** folder.
-   2. Deploying the customised image with a K8s secret contain the database URL and credentials. Scripts and resources for doing this are in the **deploy** folder.
+   1. Customising the base container image to incorporate tools and configuration to allow RH-SSO to connect to an Oracle RDBMS (by default it only supports Postgresql). Scripts and resources for doing this are in the **build** folder.
+   2. Deploying the customised image with a K8s secret containing the database URL and credentials. Scripts and resources for doing this are in the **deploy** folder.
 
 
 ### Image Build
 
 In the **build** folder there is
    
-   * **Dockerfile** : this specifies the build of our new custom image. the first **FROM** line may need to be edited to point at the coreact location and/or tag for the base image. The Dockerfile then copies resources out of **dependencies** folder and puts them in the appropriate folders in the image
-     * Of note in the **dependencies** folder is the **standaone-openshift.xml**. The contains RH-SSOs base config. This file has been adapted so that RH-SSO can pick up database config from the container at runtime. This config is injected by a K8s secret, more details on this in the **deploy** section below.
+   * **Dockerfile** : this specifies the build of our new custom image. the first **FROM** line may need to be edited to point at the correct location and/or tag for the base image. The Dockerfile then copies resources out of **dependencies** folder and puts them in the appropriate folders in the image
+     * Of note in the **dependencies** folder is the **standaone-openshift.xml**. The contains RH-SSO's base config. This file has been adapted so that RH-SSO can pick up database config from it's container at runtime. This config is injected by a K8s secret, more details on this in the **deploy** section below. Here is part of the **standaone-openshift.xml** concerned with datasource configuration.
      * ```
         <datasource jndi-name="java:jboss/datasources/KeycloakDS" pool-name="KeycloakDS" enabled="true" use-java-context="true">
             <connection-url>${env.DB_URL}</connection-url>
@@ -46,9 +46,9 @@ In the **build** folder there is
             </security>
         </datasource>
        ```
-       Notice the format of the injected variables eg. **${env.DB_USER}**. This means that are image is mobile it can be used with any Oracle database, eg dev, uat or production. All that changes is the DB config secret provided at deploy time.
-   * **build-openshift.sh** : this deploys a BuildConfig template (**docker-build-template.yaml**) to Openshift and perform the Docker build there, tag the image and dend it to a repository.
-   * **build-local-docker.sh** : this does a Docker build/tag/push on a local machine, in which only Docker is installed. This can be the quickest most convenient method.
+       Notice the format of the injected variables eg. **${env.DB_USER}**. This means that this image will be mobile it can be used with any Oracle database, eg dev, uat or production. All that changes is the DB config secret provided at deploy time.
+   * **build-openshift.sh** : this deploys a BuildConfig template (**docker-build-template.yaml**) to Openshift and performs the Docker build there, tagging the new image and pushing it to a repository.
+   * **build-local-docker.sh** : this does a Docker build/tag/push on a local machine, in which only Docker is installed. This can be the quickest most convenient build method.
 
 
 ### Image Deploy
