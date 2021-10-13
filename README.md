@@ -62,3 +62,10 @@ The **deploy** folder contains
       4. Create a secret based on some of the variables defined above. This ecret contains the database credentials and URL. They are injected into the container when it runs and refernced by the RH-SSO base config in the **standalone-openshift.xml** file. See above.
       5. Deploy the Openshift template that defines the K8s objects necessary to run and configure our custom image.
 
+When the deployment has finished (usually 1-2 mins), the RH-SSO web console will be available at the URL specified by the **SSO_WEB_HOSTNAME** variable. THe admin user credential will be those specified by the **ADMIN_USER** and **ADMIN_PASSWORD** variables.
+
+Instructions for exploiting the features of RH-SSO can be foud here :
+  
+   * https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.4/html/server_administration_guide/index
+   * https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.4/html/securing_applications_and_services_guide/index
+   * https://access.redhat.com/documentation/en-us/red_hat_single_sign-on/7.4/html/server_developer_guide/index
