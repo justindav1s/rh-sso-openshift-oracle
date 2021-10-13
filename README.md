@@ -34,8 +34,9 @@ Oracle Drivers here
 
 In the **build** folder there is
    
-   * **Dockerfile** : this specifies the build of our new custom image. the first **FROM** line may need to be edited to point at the coreact location and/or tag for the base image. The Dockerfile then copies resources out of **dependencies** folder and puts them in the appropriate folders in the image/
-   * 
+   * **Dockerfile** : this specifies the build of our new custom image. the first **FROM** line may need to be edited to point at the coreact location and/or tag for the base image. The Dockerfile then copies resources out of **dependencies** folder and puts them in the appropriate folders in the image
+   * **build-openshift.sh** : this deploys a BuildConfig template (**docker-build-template.yaml**) to Openshift and perform the Docker build there, tag the image and dend it to a repository.
+   * **build-local-docker.sh** : this does a Docker build/tag/push on a local machine, in which only Docker is installed. This can be the quickest most convenient method.
 
 
 ### Image Deploy
