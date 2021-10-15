@@ -1,4 +1,4 @@
-# Deploying Red Hat SSO with an Oracle DB datsource on Openshift 4
+# deploy RedHat SSO 7.4 to Openshift 4 using an Oracle RDBMS as a datasource.
 
 ## Background 
 
